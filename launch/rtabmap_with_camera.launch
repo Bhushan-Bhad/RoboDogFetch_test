@@ -1,0 +1,16 @@
+<launch>
+  <!-- Launch input_camera node -->
+  <include file="input_camera/launch/launch_nodes.launch"/>
+
+
+  <!-- Launch RTAB-Map -->
+  <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="screen">
+    <param name="frame_id" value="camera"/>
+    <param name="subscribe_depth" value="false"/>
+    <param name="subscribe_stereo" value="false"/>
+    <param name="subscribe_rgbd" value="false"/>
+    <remap from="rgb/image" to="/camera/image_raw"/>
+    <remap from="rgb/camera_info" to="/camera/camera_info"/>
+  </node>
+</launch>
+
